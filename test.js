@@ -1,11 +1,8 @@
 // Requires
-const Discord = require('discord.js-commando')
+const Discord = require('discord.js')
 const client = new Discord.Client();
 const fs = require("fs");
 // Create an instance of a Discord client
-client.registry.registerGroup('random','Random');
-client.registry.registerDefaults();
-client.registry.registerCommandsIn("./commands");
 
 // The bot is ready
 client.on('ready', () => {
