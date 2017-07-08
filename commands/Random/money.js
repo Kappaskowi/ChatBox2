@@ -17,8 +17,9 @@ class MoneyCommand extends commando.Command {
         };
         let userDataMoney = money[message.author.id];
         //message.reply("Your balance is $" + userDataMoney.money);
-        embed.setTitle("Bank")
+        embed.setTitle("Bank");
         embed.addField("Balance",userDataMoney.money, false);
+        message.channel.send({embed});
            fs.writeFile("./money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
