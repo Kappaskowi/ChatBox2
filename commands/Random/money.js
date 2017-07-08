@@ -34,7 +34,12 @@ class MoneyCommand extends commando.Command {
             },
          "image": {
             "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+            },
+                              fields: [{
+            name: "Test",
+            value: userDataMoney.money
             }
+        ]
          }
                             );
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
