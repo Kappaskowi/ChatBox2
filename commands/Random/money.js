@@ -22,9 +22,7 @@ class MoneyCommand extends commando.Command {
       name: "Test",
       //icon_url: client.user.avatarURL
     },
-    title: "This is an embed",
-    url: "http://google.com",
-    description: "This is a test embed to showcase what they look like and what they can do.",
+    title: "Bank",
     fields: [{
         name: "Balance",
         value: userDataMoney.money
@@ -33,7 +31,7 @@ class MoneyCommand extends commando.Command {
     timestamp: new Date(),
     footer: {
       //icon_url: client.user.avatarURL,
-      text: "© Example"
+      text: "Bank"
     }
   }
 });
