@@ -26,13 +26,10 @@ class DealershipCommand extends commando.Command {
         }
         else {
             for (val of DataDealership) {
-                message.channel.send(
-                    {embed : {
-                    color: 3447003,
-                    author: {
-                    name: "Test",
-                     }
-                  }});
+                message.channel.send({embed: {
+                 color: 3447003,
+                description: "A very simple Embed!"
+                }});
             }
         }
     }
