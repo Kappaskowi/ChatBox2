@@ -25,8 +25,15 @@ class DealershipCommand extends commando.Command {
             });
         }
         else {
-            message.channel.send("\n" + DataDealership[0].model + " Price: $" + DataDealership[0].price, { file: DataDealership[0].img });
-            message.channel.send("\n" + DataDealership[1].model + " Price: $" + DataDealership[1].price, { file: DataDealership[1].img });
+            for (val of DataDealership) {
+                message.channel.send(
+                    {embed : {
+                    color: 3447003,
+                    author: {
+                    name: "Test",
+                     }
+                  }});
+            }
         }
     }
 }
