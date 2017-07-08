@@ -42,7 +42,7 @@ client.on("message", message => {
     if (message.content.startsWith(prefix + "money")) {
      const embed = new Discord.RichEmbed()
   .setTitle("Money")
-  .setAuthor([message.author, "https://i.imgur.com/lm8s41J.png")
+  .setAuthor(message.author, "https://i.imgur.com/lm8s41J.png")
   .setColor(0x00AE86)
   .setDescription("Bank")
   .setFooter("Bank", "http://i.imgur.com/w1vhFSR.png")
