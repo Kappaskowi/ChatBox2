@@ -25,10 +25,12 @@ class DealershipCommand extends commando.Command {
       });
     }
     else {
+                for(let i = 0; i < 3; i++) {
                 message.channel.send({embed: {
                 color: 3447003,
-                description: "A very simple Embed!"
-                }});   
+                description: DataDealership[i].model
+                }})
+                };   
     }
   }
 };
