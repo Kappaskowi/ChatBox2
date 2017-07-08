@@ -41,6 +41,6 @@ class DealershipCommand extends commando.Command {
         channel.send({ embed });
       }
     };
-  }
-}
+  };
+};
 module.exports = DealershipCommand;
