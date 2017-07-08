@@ -11,7 +11,7 @@ class DealershipCommand extends commando.Command {
     }
     async run(message, args) {
         let deal_command = args.split(' ');
-        let dealership = JSON.parse(fs.readFileSync("./dealership.json", "utf8"));
+        let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
         let DataDealership = [];
         for (var prop in dealership) {
             DataDealership.push(dealership[prop]);
@@ -20,7 +20,7 @@ class DealershipCommand extends commando.Command {
             var obj = [];
             obj.push(message.author.id);
             obj.push(DataDealership[deal_command[1]]);
-            fs.writeFile("./garage.json", JSON.stringify(obj), (err) => {
+            fs.writeFile("./json/garage.json", JSON.stringify(obj), (err) => {
                 if (err) console.error(err)
             });
         }
