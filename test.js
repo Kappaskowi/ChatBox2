@@ -70,8 +70,12 @@ client.on("message", message => {
    */
   .setTimestamp()
   .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-  .addField("This is a field title, it can hold 256 characters",
-    "This is a field value, it can hold 2048 characters.")
+  .addField("Test1",
+    "Test1")
+    .addField("Test2",
+    "Test2")
+    .addField("Test3", 
+              "Test3")
   /*
    * Inline fields may not display as inline if the thumbnail and/or image is too big.
    */
