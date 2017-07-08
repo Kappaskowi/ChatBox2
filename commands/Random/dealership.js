@@ -31,6 +31,11 @@ class DealershipCommand extends commando.Command {
                 description: DataDealership[i].model,
                 "thumbnail": {
                   "url": DataDealership[i].img
+                },
+                "fields": [
+                {
+                "name": "Price",
+                "value": "$" + DataDealership[i].price
                 }
                 }})
                 };   
