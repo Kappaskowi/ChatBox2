@@ -36,7 +36,7 @@ class DealershipCommand extends commando.Command {
                 {
                 "name": "Price",
                 "value": "$" + DataDealership[i].price
-                }
+                }]
                 }})
                 };   
     }
