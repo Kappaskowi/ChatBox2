@@ -17,6 +17,7 @@ class MoneyCommand extends commando.Command {
         };
         let userDataMoney = money[message.author.id];
         //message.reply("Your balance is $" + userDataMoney.money);
+        /*
         const embed = new Discord.RichEmbed()
         .setTitle("This is your title, it can hold 256 characters")
         .setAuthor("Author Name", "https://i.imgur.com/lm8s41J.png")
@@ -32,7 +33,11 @@ class MoneyCommand extends commando.Command {
         .addField("Inline Field", "They can also be inline.", true)
         .addBlankField(true)
         .addField("Inline Field 3", "You can have a maximum of 25 fields.", true);
-        message.channel.send({embed});
+        message.channel.send({embed});*/
+        message.channel.send({embed: {
+        color: 3447003,
+        description: "A very simple Embed!"
+        }});
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
