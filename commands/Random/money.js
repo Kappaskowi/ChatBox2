@@ -10,7 +10,7 @@ class MoneyCommand extends commando.Command {
         });
     }
     async run(message, args) {
-        let money = JSON.parse(fs.readFileSync("./money.json", "utf8"));
+        let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
         if (!money[message.author.id]) money[message.author.id] = {
             money: 0
         };
