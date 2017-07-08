@@ -69,9 +69,9 @@ client.on("message", message => {
    * Takes a Date object, defaults to current date.
    */
   .setTimestamp()
-  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed");
   for(let i = 0; i < 5; i++) {
-    embed.addField("Field " + i, "Test)
+    embed.addField("Field ", "Test);
   }
   /*
    * Inline fields may not display as inline if the thumbnail and/or image is too big.
