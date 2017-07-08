@@ -25,7 +25,7 @@ class DealershipCommand extends commando.Command {
       });
     }
     else {
-                for(let i = 0; i < 3; i++) {
+                for(let i = 0; i < DataDealership.length; i++) {
                 message.channel.send({embed: {
                 color: 3447003,
                 description: DataDealership[i].model,
