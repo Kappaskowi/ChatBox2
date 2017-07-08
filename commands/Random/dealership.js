@@ -25,22 +25,11 @@ class DealershipCommand extends commando.Command {
       });
     }
     else {
-      for (let i = 0; i < 3; i++) {
-        const embed = {
-          "color": 11140497,
-          "thumbnail": {
-            "url": "https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-          "fields": [
-            {
-              "name": "Test",
-              "value": "some of these properties have certain limits..."
-            }
-          ]
-        };
-        channel.send({ embed });
-      }
-    };
-  };
+                message.channel.send({embed: {
+                color: 3447003,
+                description: "A very simple Embed!"
+                }});   
+    }
+  }
 };
 module.exports = DealershipCommand;
