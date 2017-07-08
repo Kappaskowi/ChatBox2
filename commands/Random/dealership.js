@@ -28,7 +28,10 @@ class DealershipCommand extends commando.Command {
                 for(let i = 0; i < 3; i++) {
                 message.channel.send({embed: {
                 color: 3447003,
-                description: DataDealership[i].model
+                description: DataDealership[i].model,
+                "thumbnail": {
+                  "url": DataDealership[i].img
+                }
                 }})
                 };   
     }
