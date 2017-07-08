@@ -32,7 +32,10 @@ class MoneyCommand extends commando.Command {
             text: "Bank"
                 }
             }
-        });
+        } + {embed: {
+            color: 3447003,
+            description: "A very simple Embed!"}}
+          );
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
