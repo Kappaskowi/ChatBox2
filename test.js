@@ -70,12 +70,9 @@ client.on("message", message => {
    */
   .setTimestamp()
   .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-  .addField("Test1",
-    "Test1")
-    .addField("Test2",
-    "Test2")
-    .addField("Test3", 
-              "Test3")
+  for(let i = 0; i < 5; i++) {
+    embed.addField("Field " + i, "Test)
+  }
   /*
    * Inline fields may not display as inline if the thumbnail and/or image is too big.
    */
