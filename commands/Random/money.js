@@ -35,28 +35,7 @@ class MoneyCommand extends commando.Command {
         });
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
-        } +
-                        color: 3447003,
-        author: {
-            name: "Test",
-        },
-        title: "Bank",
-        fields: [{
-            name: "Balance",
-            value: userDataMoney.money
-            }
-        ],
-        timestamp: new Date(),
-        footer: {
-            text: "Bank"
-                }
-            }
         });
-           fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
-            if (err) console.error(err)
-        }
-        
-                       );
     }
 }
 
