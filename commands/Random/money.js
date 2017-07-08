@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
+const embed = new Discord.RichEmbed();
 class MoneyCommand extends commando.Command {
     constructor(client) {
         super(client, {
@@ -15,7 +16,9 @@ class MoneyCommand extends commando.Command {
             money: 0
         };
         let userDataMoney = money[message.author.id];
-        message.reply("Your balance is $" + userDataMoney.money);
+        //message.reply("Your balance is $" + userDataMoney.money);
+        embed.setTitle("Bank")
+        embed.addField("Balance",userDataMoney.money, false);
            fs.writeFile("./money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
