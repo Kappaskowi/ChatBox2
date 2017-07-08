@@ -21,7 +21,11 @@ class MoneyCommand extends commando.Command {
         author: {
         name: "Test"
         }
-        }});
+        fields: [{
+        name: "Fields",
+        value: "They can have different fields with small headlines."
+        }]
+          });
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
