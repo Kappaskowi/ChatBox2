@@ -64,7 +64,7 @@ client.on("message", message => {
   .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
   .addField("Inline Field", "They can also be inline.", true)
   .addBlankField(true)
-  .addField("Balance", ${userDataMoney.money} , true);
+  .addField("Balance", userDataMoney.money , true);
 
   message.channel.send({embed});
 });
