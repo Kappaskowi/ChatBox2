@@ -40,7 +40,17 @@ client.on("message", message => {
     message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
   }
     if (message.content.startsWith(prefix + "money")) {
-    message.reply(`Your current balance is $${userDataMoney.money}.`);
+     const embed = new Discord.RichEmbed()
+  .setTitle("Money")
+  .setAuthor([message.author, "https://i.imgur.com/lm8s41J.png")
+  .setColor(0x00AE86)
+  .setDescription("Bank")
+  .setFooter("Bank", "http://i.imgur.com/w1vhFSR.png")
+  .setTimestamp()
+  .addBlankField(true)
+  .addField("Balance", userDataMoney.money , false);
+
+  message.channel.send({embed});
   }
       if (message.content.startsWith(prefix + "rob")) {
     userDataMoney.money = userDataMoney.money + robbedAmmount;
@@ -54,18 +64,6 @@ client.on("message", message => {
     if (err) console.error(err)
   });
   
-  const embed = new Discord.RichEmbed()
-  .setTitle("Money")
-  .setAuthor("Author Name", "https://i.imgur.com/lm8s41J.png")
-  .setColor(0x00AE86)
-  .setDescription("This is the main body of text, it can hold 2048 characters.")
-  .setFooter("This is the footer text, it can hold 2048 characters", "http://i.imgur.com/w1vhFSR.png")
-  .setTimestamp()
-  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-  .addField("Inline Field", "They can also be inline.", true)
-  .addBlankField(true)
-  .addField("Balance", userDataMoney.money , true);
-
-  message.channel.send({embed});
+ 
 });
 client.login(process.env.BOT_TOKEN)
