@@ -1,6 +1,7 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
+var helpers = require('./test');
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
@@ -11,7 +12,7 @@ class MoneyCommand extends commando.Command {
             description: 'Balance'
         });
     }
-    Call("testDB");
+   helpers.testDB();
     async run(message, args) {
         let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
         if (!money[message.author.id]) money[message.author.id] = {
