@@ -27,16 +27,7 @@ class MoneyCommand extends commando.Command {
             value: userDataMoney.money
             }
         ],
-        timestamp: new Date(),
-        footer: {
-            text: "Bank"
-                }
-            },
-            fields: [{
-            name: "Test",
-            value: userDataMoney.money
-            }]
-         } + "Test");
+        timestamp: new Date()});
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
