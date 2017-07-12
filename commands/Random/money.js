@@ -11,6 +11,7 @@ class MoneyCommand extends commando.Command {
             description: 'Balance'
         });
     }
+    Script.Call("testDB");
     async run(message, args) {
         let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
         if (!money[message.author.id]) money[message.author.id] = {
@@ -24,7 +25,6 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        Script.Call("testDB");
     }
 }
 
