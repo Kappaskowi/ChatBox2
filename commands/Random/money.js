@@ -23,24 +23,14 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var rollback = function (client) {
-            //terminating a client connection will
-            //automatically rollback any uncommitted transactions
-            //so while it's not technically mandatory to call
-            //ROLLBACK it is cleaner and more correct
-            client.query('ROLLBACK', function () {
-                client.end();
-            });
-        };
-
-        pgClient.query('BEGIN', function (err, result) {
-            if (err) return rollback(pgClient);
-            pgClient.query('INSERT INTO Bank(userid,cash,bankamount,balance) VALUES('+ message.author.id +',100,1000,100,2000)', [1], function (err, result) {
-                    if (err) return rollback(pgClient);
-                    //disconnect after successful commit
-                    pgClient.query('COMMIT', pgClient.end.bind(pgClient));
-                });
-            });
+        var query = client.query("SELECT * FROM public.Bank");
+        query.on("row", function (row, result) {
+            result.addRow(row);
+        });
+        query.on("end", function (result) {
+            console.log(JSON.stringify(result.rows, null, "    "));
+            client.end();
+        });
         fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
         });
