@@ -19,7 +19,7 @@ var pgClient = new pg.Client(connectionString);
 //var http = require('http'); http.createServer(function (req, res) { res.writeHead(200, {'Content-Type': 'text/plain'}); res.send('it is running\n'); }).listen(process.env.PORT || 5000);
 bot.login(process.env.BOT_TOKEN);
 pgClient.connect();
- var query = pgClient.query("SELECT firstname, lastname FROM emps ORDER BY lastname, firstname");
+ var query = pgClient.query("SELECT * FROM public.bank");
         query.on("row", function (row, result) {
             result.addRow(row);
         });
