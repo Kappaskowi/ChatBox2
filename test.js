@@ -8,7 +8,7 @@ const fs = require("fs");
 const commando = require('discord.js-commando');
 const bot = new commando.Client();
 const fs = require("fs");
-var pg = require(‘pg’);
+var pg = require("pg");
 bot.registry.registerGroup('random','Random');
 
 bot.registry.registerDefaults();
