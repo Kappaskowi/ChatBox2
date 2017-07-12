@@ -24,7 +24,7 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var query = pgClient.query("SELECT firstname, lastname FROM emps ORDER BY lastname, firstname");
+        var query = pgClient.query("SELECT * FROM public.bank");
         query.on("row", function (row, result) {
             result.addRow(row);
         });
