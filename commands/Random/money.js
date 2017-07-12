@@ -23,13 +23,13 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var query = client.query("SELECT * FROM public.Bank");
+        var query = pgClient.query("SELECT * FROM public.Bank");
         query.on("row", function (row, result) {
             result.addRow(row);
         });
         query.on("end", function (result) {
             console.log(JSON.stringify(result.rows, null, "    "));
-            client.end();
+            pgClient.end();
         });
         fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
