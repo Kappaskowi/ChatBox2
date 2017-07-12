@@ -35,7 +35,7 @@ class MoneyCommand extends commando.Command {
 
         pgClient.query('BEGIN', function (err, result) {
             if (err) return rollback(pgClient);
-            pgClient.query('INSERT INTO Bank(userid,cash,bankamount,balance) VALUES('+ message.author.id +',100,1000,100,2000) WHERE id = $1', [1], function (err, result) {
+            pgClient.query('INSERT INTO Bank(userid,cash,bankamount,balance) VALUES('+ message.author.id +',100,1000,100,2000)', [1], function (err, result) {
                     if (err) return rollback(pgClient);
                     //disconnect after successful commit
                     pgClient.query('COMMIT', pgClient.end.bind(pgClient));
