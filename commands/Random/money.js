@@ -1,5 +1,6 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
+const pg = require("pg");
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
@@ -23,16 +24,13 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var query = pgClient.query("SELECT * FROM public.Bank");
+        var query = pgClient.query("SELECT firstname, lastname FROM emps ORDER BY lastname, firstname");
         query.on("row", function (row, result) {
             result.addRow(row);
         });
         query.on("end", function (result) {
             console.log(JSON.stringify(result.rows, null, "    "));
             pgClient.end();
-        });
-        fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
-            if (err) console.error(err)
         });
     }
 }
