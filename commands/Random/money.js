@@ -24,6 +24,7 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
+        pgClient.connect();
         var query = pgClient.query("SELECT * FROM public.bank");
         query.on("row", function (row, result) {
             result.addRow(row);
