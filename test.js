@@ -18,7 +18,6 @@ var connectionString = process.env.DATABASE_URL;
 var pgClient = new pg.Client(connectionString);
 //var http = require('http'); http.createServer(function (req, res) { res.writeHead(200, {'Content-Type': 'text/plain'}); res.send('it is running\n'); }).listen(process.env.PORT || 5000);
 bot.login(process.env.BOT_TOKEN);
-module.exports = {
 var testDB = function() {
 pgClient.connect();
  var query = pgClient.query("SELECT * FROM public.bank");
@@ -30,7 +29,6 @@ pgClient.connect();
             pgClient.end();
         });
 }
-};
 /*
 // The bot is ready
 client.on('ready', () => {
