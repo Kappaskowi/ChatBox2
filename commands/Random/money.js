@@ -1,7 +1,7 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
-var helpers = require('./test');
+var helpers = require('./test.js');
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
