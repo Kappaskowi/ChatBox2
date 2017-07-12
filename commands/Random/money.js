@@ -16,17 +16,10 @@ class MoneyCommand extends commando.Command {
             money: 0
         };
         let userDataMoney = money[message.author.id];
-        message.channel.send({embed: {
-        color: 3447003,
-        author: {
-            name: "Test",
-        },
-        title: "Bank",
-        fields: [{
-            name: "Balance",
-            value: userDataMoney.money
-            }]
-          }
+        message.channel.send(
+            {embed: {
+            color: 3447003,
+            description: "A very simple Embed!"}}
          );
            fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
             if (err) console.error(err)
