@@ -28,7 +28,6 @@ class MoneyCommand extends commando.Command {
                     console.log(result.rows);
                     console.log("Creating new entry.");
                     pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
-                    pgClient.end();
                 } else if (result.rows) {
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
