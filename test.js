@@ -1,10 +1,3 @@
-// Requires
-/*
-const Discord = require('discord.js')
-const client = new Discord.Client();
-const fs = require("fs");
-*/
-// Create an instance of a Discord client
 const commando = require('discord.js-commando');
 const bot = new commando.Client();
 const fs = require("fs");
