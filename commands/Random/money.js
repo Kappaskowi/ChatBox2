@@ -29,7 +29,7 @@ class MoneyCommand extends commando.Command {
         }
         );
         pgClient.connect();
-        var query = pgClient.query("SELECT * FROM public.bank");
+        var query = pgClient.query("UPDATE public.bank SET cash = 1000, bankamount = 1000, balance = 2000 WHERE userid =" + message.author.id);
         query.on("row", function (row, result) {
             result.addRow(row);
         });
