@@ -14,21 +14,8 @@ class MoneyCommand extends commando.Command {
             description: 'Balance'
         });
     };
-
+    
     async run(message, args) {
-        let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
-        if (!money[message.author.id]) money[message.author.id] = {
-            money: 0
-        };
-        let userDataMoney = money[message.author.id];
-        message.channel.send({
-            embed: {
-                color: 3447003,
-                description: "A very simple Embed!"
-            }
-        }
-        );
-        //var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
         var db_query = "SELECT cash, bankamount FROM public.bank WHERE userid = "+ message.author.id;
         pgClient.connect(function (err) {
             console.log("Connected!");
@@ -41,6 +28,20 @@ class MoneyCommand extends commando.Command {
                 pgClient.end();
             });
         });
+        //let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
+        if (!money[message.author.id]) money[message.author.id] = {
+            money: 0
+        };
+        let userDataMoney = result;
+        message.channel.send({
+            embed: {
+                color: 3447003,
+                description: userDataMoney
+            }
+        }
+        );
+        //var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
+        
     }
 }
 
