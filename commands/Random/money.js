@@ -22,12 +22,10 @@ class MoneyCommand extends commando.Command {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
                 if (err || result.rows.length <= 0) {
-                    if(err) {console.log(err.code);}
-                    else
                     console.log(result.rows);
                     pgClient.query("SELECT createBank(" + message.author.id + ")");
                     pgClient.end();
-                } else
+                } else if (result.rows.lenght > 0) {
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
                 var userDataMoney = JSON.parse(db_result);
@@ -55,7 +53,7 @@ class MoneyCommand extends commando.Command {
                 }
                 );
                 pgClient.end();
-            });
+            }});
         });
     }
 }
