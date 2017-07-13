@@ -28,7 +28,7 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var db_query = pgClient.query("INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES (" + message.id.author + ", 1000, 1000, 2000");
+        var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES (" + message.id.author + ", 1000, 1000, 2000";
         pgClient.connect(function (err) {
             if (err) throw err;
             console.log("Connected!");
