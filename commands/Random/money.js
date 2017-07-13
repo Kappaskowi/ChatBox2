@@ -2,6 +2,8 @@ const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
 var helper = require("test.js");
+var connectionString = process.env.DATABASE_URL;
+var pgClient = new pg.Client(connectionString);
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
@@ -26,7 +28,15 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        helper.testDB(1);
+        pgClient.connect();
+        var query = pgClient.query("SELECT * FROM public.bank");
+        query.on("row", function (row, result) {
+            result.addRow(row);
+        });
+        query.on("end", function (result) {
+            console.log(JSON.stringify(result.rows, null, "    "));
+            pgClient.end();
+        });
     }
 }
 
