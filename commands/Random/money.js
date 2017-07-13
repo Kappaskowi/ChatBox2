@@ -32,7 +32,7 @@ class MoneyCommand extends commando.Command {
         pgClient.connect(function (err) {
             if (err) throw err;
             console.log("Connected!");
-            con.query(db_query, function (err, result) {
+            pgClient.query(db_query, function (err, result) {
                 if (err) throw err;
                 console.log("1 record inserted");
             });
