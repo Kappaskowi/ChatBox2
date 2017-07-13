@@ -14,7 +14,7 @@ class MoneyCommand extends commando.Command {
             description: 'Balance'
         });
     };
-   
+
     async run(message, args) {
         let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
         if (!money[message.author.id]) money[message.author.id] = {
@@ -28,14 +28,14 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        pgClient.connect();
-        var query = pgClient.query("INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+ message.id.author + ", 1000, 1000, 2000); UPDATE public.bank SET cash = 1000, bankamount = 1000, balance = 3000 WHERE userid =" + message.author.id);
-        query.on("row", function (row, result) {
-            result.addRow(row);
-        });
-        query.on("end", function (result) {
-            console.log(JSON.stringify(result.rows, null, "    "));
-            pgClient.end();
+        var db_query = pgClient.query("INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES (" + message.id.author + ", 1000, 1000, 2000");
+        pgClient.connect(function (err) {
+            if (err) throw err;
+            console.log("Connected!");
+            con.query(db_query, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted");
+            });
         });
     }
 }
