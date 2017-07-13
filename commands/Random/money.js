@@ -30,10 +30,6 @@ class MoneyCommand extends commando.Command {
                 pgClient.end();
             });
         });
-        //let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
-        if (!money[message.author.id]) money[message.author.id] = {
-            money: 0
-        };
         var userDataMoney = JSON.parse(db_result);
         console.log(userDataMoney);
         console.log(userDataMoney.cash);
