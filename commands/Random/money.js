@@ -11,8 +11,8 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
-    }
-   console.log(helper.testDB());
+    };
+   
     async run(message, args) {
         let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
         if (!money[message.author.id]) money[message.author.id] = {
@@ -26,6 +26,7 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
+        helper.testDB(1);
     }
 }
 
