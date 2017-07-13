@@ -34,7 +34,7 @@ class MoneyCommand extends commando.Command {
             pgClient.query(db_query, function (err, result) {
                 if (err) {
                     console.log(err.code);
-                    if(error.code = 23505) {
+                    if(err.code = 23505) {
                         pgClient.query("UPDATE public.bank SET cash = 1000, bankamount = 1000, balance = 2000 WHERE userid = " + message.author.id);
                     }
                     pgClient.end();
