@@ -34,8 +34,10 @@ class MoneyCommand extends commando.Command {
             pgClient.query(db_query, function (err, result) {
                 if (err) {
                     console.log(err.code);
+                    pgClient.end();
                 } else
                 console.log("1 record inserted "+message.author.id);
+                pgClient.end();
             });
         });
     }
