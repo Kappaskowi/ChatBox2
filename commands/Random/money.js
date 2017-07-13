@@ -24,7 +24,8 @@ class MoneyCommand extends commando.Command {
                     console.log(err.code);
                     pgClient.end();
                 } else
-                console.log(JSON.stringify(result.rows, null, "    "));
+                var db_result = JSON.stringify(result.rows, null, "    ");
+                console.log(db_result);
                 pgClient.end();
             });
         });
@@ -32,11 +33,11 @@ class MoneyCommand extends commando.Command {
         if (!money[message.author.id]) money[message.author.id] = {
             money: 0
         };
-        let userDataMoney = result;
+        let userDataMoney = JSON.parse(result);
         message.channel.send({
             embed: {
                 color: 3447003,
-                description: userDataMoney
+                description: userDataMoney.cash
             }
         }
         );
