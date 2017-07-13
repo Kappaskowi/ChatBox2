@@ -55,7 +55,7 @@ class MoneyCommand extends commando.Command {
                         }
                     }
                     );
-                    pgClient.end();
+                    //pgClient.end();
                 }
             });
         });
