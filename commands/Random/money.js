@@ -33,7 +33,9 @@ class MoneyCommand extends commando.Command {
         if (!money[message.author.id]) money[message.author.id] = {
             money: 0
         };
-        let userDataMoney = JSON.parse(db_result);
+        var userDataMoney = JSON.parse(db_result);
+        consolel.log(userDataMoney);
+        console.log(userDataMoney.cash);
         message.channel.send({
             embed: {
                 color: 3447003,
