@@ -26,13 +26,8 @@ class MoneyCommand extends commando.Command {
                     pgClient.end();
                 } else
                     db_result = JSON.stringify(result.rows, null, "    ");
-                console.log(db_result);
-<<<<<<< HEAD
                 var userDataMoney = JSON.parse(db_result);
                 console.log(userDataMoney);
-                console.log(userDataMoney.cash);
-                console.log(db_result);
-                console.log(db_result.cash);
                 message.channel.send({
                     embed: {
                         color: 3447003,
@@ -44,24 +39,6 @@ class MoneyCommand extends commando.Command {
                     }]
                 }
                 );
-=======
-                        var userDataMoney = JSON.parse(db_result);
-        console.log(userDataMoney);
-        console.log(userDataMoney.cash);
-        console.log(db_result);
-        console.log(db_result.cash);
-        message.channel.send({
-            embed: {
-                color: 3447003,
-                description: "Bank"
-            },
-            fields: [{
-                name: "Cash",
-                value:  userDataMoney.cash
-            }]
-        }
-        );
->>>>>>> 98151cf694e9f451dfb753605d55c7c3d8a871e9
                 pgClient.end();
             });
         });
