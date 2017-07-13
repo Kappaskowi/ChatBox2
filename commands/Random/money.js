@@ -35,8 +35,10 @@ class MoneyCommand extends commando.Command {
             money: 0
         };
         var userDataMoney = JSON.parse(db_result);
-        consolel.log(userDataMoney);
+        console.log(userDataMoney);
         console.log(userDataMoney.cash);
+        console.log(db_result);
+        console.log(db_result.cash);
         message.channel.send({
             embed: {
                 color: 3447003,
