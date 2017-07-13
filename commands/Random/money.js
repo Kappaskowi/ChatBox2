@@ -30,18 +30,26 @@ class MoneyCommand extends commando.Command {
                 console.log(userDataMoney[0].cash);
                 console.log(result["cash"]);
                 message.channel.send({
-                    embed: {
-                        color: 3447003,
-                        description: "Bank"
-                    },
-                    fields: [{
-                        name: "Cash",
-                        value: userDataMoney['cash']
-                    },
-                    {
-                        name: "Bank",
-                        value: 1000                    
-                    }]
+                    "embed": {
+                        "description": "**Discord Bank**",
+                        "color": 12367392,
+                        "timestamp": new Date(),
+                        "footer": {
+                            "text": "Discord Bank"
+                        },
+                        "fields": [
+                            {
+                                "name": "Cash",
+                                "value": "$ " + userDataMoney[0].cash,
+                                "inline": true
+                            },
+                            {
+                                "name": "Bank",
+                                "value": "$ " + userDataMoney[0].bankamount,
+                                "inline": true
+                            }
+                        ]
+                    }
                 }
                 );
                 pgClient.end();
