@@ -35,7 +35,7 @@ class MoneyCommand extends commando.Command {
                     },
                     fields: [{
                         name: "Cash",
-                        value: userDataMoney.cash
+                        value: userDataMoney["cash"]
                     }]
                 }
                 );
