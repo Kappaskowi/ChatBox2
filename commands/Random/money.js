@@ -28,12 +28,15 @@ class MoneyCommand extends commando.Command {
             }
         }
         );
-        var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES (2, 1000, 1000, 2000)";
+        var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
         pgClient.connect(function (err) {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
                 if (err) {
                     console.log(err.code);
+                    if(error.code = 23505) {
+                        pgClient.query("UPDATE public.bank SET cash = 1000, bankamount = 1000, balance = 2000 WHERE userid = " + message.author.id);
+                    }
                     pgClient.end();
                 } else
                 console.log("1 record inserted "+message.author.id);
