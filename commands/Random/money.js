@@ -21,7 +21,7 @@ class MoneyCommand extends commando.Command {
         pgClient.connect(function (err) {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
-                if (err || result == []) {
+                if (err || result.rows.length <= 0) {
                     console.log(err.code);
                     console.log(result.rows);
                     pgClient.query("SELECT createBank(" + message.author.id + ")");
