@@ -16,6 +16,7 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
+        var db_result = "";
         var db_query = "SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id;
         pgClient.connect(function (err) {
             console.log("Connected!");
@@ -24,27 +25,28 @@ class MoneyCommand extends commando.Command {
                     console.log(err.code);
                     pgClient.end();
                 } else
-                    var db_result = JSON.stringify(result.rows, null, "    ");
+                    db_result = JSON.stringify(result.rows, null, "    ");
                 console.log(db_result);
+                var userDataMoney = JSON.parse(db_result);
+                console.log(userDataMoney);
+                console.log(userDataMoney.cash);
+                console.log(db_result);
+                console.log(db_result.cash);
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: "Bank"
+                    },
+                    fields: [{
+                        name: "Cash",
+                        value: userDataMoney.cash
+                    }]
+                }
+                );
                 pgClient.end();
             });
         });
-        //let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
-        if (!money[message.author.id]) money[message.author.id] = {
-            money: 0
-        };
-        let userDataMoney = JSON.parse(result);
-        message.channel.send({
-            embed: {
-                color: 3447003,
-                description: "Bank"
-            },
-            fields: [{
-                name: "Cash",
-                value:  userDataMoney.cash
-            }]
-        }
-        );
+
         //var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
 
     }
