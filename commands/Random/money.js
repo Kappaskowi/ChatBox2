@@ -16,6 +16,7 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
+        var db_result = "";
         var db_query = "SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id;
         pgClient.connect(function (err) {
             console.log("Connected!");
@@ -24,7 +25,7 @@ class MoneyCommand extends commando.Command {
                     console.log(err.code);
                     pgClient.end();
                 } else
-                    var db_result = JSON.stringify(result.rows, null, "    ");
+                    db_result = JSON.stringify(result.rows, null, "    ");
                 console.log(db_result);
                 pgClient.end();
             });
