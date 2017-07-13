@@ -27,10 +27,7 @@ class MoneyCommand extends commando.Command {
                 } else
                     db_result = JSON.stringify(result.rows, null, "    ");
                 console.log(db_result);
-                pgClient.end();
-            });
-        });
-        var userDataMoney = JSON.parse(db_result);
+                        var userDataMoney = JSON.parse(db_result);
         console.log(userDataMoney);
         console.log(userDataMoney.cash);
         console.log(db_result);
@@ -46,6 +43,10 @@ class MoneyCommand extends commando.Command {
             }]
         }
         );
+                pgClient.end();
+            });
+        });
+
         //var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
 
     }
