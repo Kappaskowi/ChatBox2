@@ -23,37 +23,43 @@ class MoneyCommand extends commando.Command {
             pgClient.query(db_query, function (err, result) {
                 if (err || result.rows.length <= 0) {
                     console.log(result.rows);
-                    pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
                     pgClient.end();
+                    pgClient.connect(function (err) {
+                        console.log("Creating new entry.");
+                        pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
+                        pgClient.end();
+                    }
+                    );
                 } else if (result.rows.lenght > 0) {
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
-                var userDataMoney = JSON.parse(db_result);
-                message.channel.send({
-                    "embed": {
-                        "description": "**Discord Bank**",
-                        "color": 12367392,
-                        "timestamp": new Date(),
-                        "footer": {
-                            "text": "Discord Bank"
-                        },
-                        "fields": [
-                            {
-                                "name": "Cash",
-                                "value": "$ " + userDataMoney[0].cash,
-                                "inline": true
+                    var userDataMoney = JSON.parse(db_result);
+                    message.channel.send({
+                        "embed": {
+                            "description": "**Discord Bank**",
+                            "color": 12367392,
+                            "timestamp": new Date(),
+                            "footer": {
+                                "text": "Discord Bank"
                             },
-                            {
-                                "name": "Bank",
-                                "value": "$ " + userDataMoney[0].bankamount,
-                                "inline": true
-                            }
-                        ]
+                            "fields": [
+                                {
+                                    "name": "Cash",
+                                    "value": "$ " + userDataMoney[0].cash,
+                                    "inline": true
+                                },
+                                {
+                                    "name": "Bank",
+                                    "value": "$ " + userDataMoney[0].bankamount,
+                                    "inline": true
+                                }
+                            ]
+                        }
                     }
+                    );
+                    pgClient.end();
                 }
-                );
-                pgClient.end();
-            }});
+            });
         });
     }
 }
