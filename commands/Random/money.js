@@ -30,10 +30,8 @@ class MoneyCommand extends commando.Command {
         );
         var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES (" + message.id.author + ", 1000, 1000, 2000";
         pgClient.connect(function (err) {
-            if (err) throw err;
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
-                if (err) throw err;
                 console.log("1 record inserted");
             });
         });
