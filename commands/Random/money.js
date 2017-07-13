@@ -28,8 +28,6 @@ class MoneyCommand extends commando.Command {
                 } else
                     db_result = JSON.stringify(result.rows, null, "    ");
                 var userDataMoney = JSON.parse(db_result);
-                console.log(userDataMoney[0].cash);
-                console.log(result["cash"]);
                 message.channel.send({
                     "embed": {
                         "description": "**Discord Bank**",
@@ -56,9 +54,6 @@ class MoneyCommand extends commando.Command {
                 pgClient.end();
             });
         });
-
-        //var db_query = "INSERT INTO public.bank(userid, cash, bankamount, balance) VALUES ("+message.author.id+", 1000, 1000, 2000)";
-
     }
 }
 
