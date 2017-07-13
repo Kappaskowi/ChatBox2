@@ -23,7 +23,7 @@ class MoneyCommand extends commando.Command {
             pgClient.query(db_query, function (err, result) {
                 if (err || result == null) {
                     console.log(err.code);
-                    pgClient.query("SELECT createBank("+ message.author.id +")");
+                    pgClient.query("SELECT createBank(" + message.author.id + ")");
                     pgClient.end();
                 } else
                     db_result = JSON.stringify(result.rows, null, "    ");
