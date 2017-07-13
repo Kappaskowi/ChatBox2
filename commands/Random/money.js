@@ -23,11 +23,11 @@ class MoneyCommand extends commando.Command {
             pgClient.query(db_query, function (err, result) {
                 if (err || result == null) {
                     console.log(err.code);
-                    console.log(result);
+                    console.log(result.rows);
                     pgClient.query("SELECT createBank(" + message.author.id + ")");
                     pgClient.end();
                 } else
-                    console.log(result);
+                    console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
                 var userDataMoney = JSON.parse(db_result);
                 message.channel.send({
