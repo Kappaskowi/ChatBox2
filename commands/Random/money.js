@@ -21,16 +21,15 @@ class MoneyCommand extends commando.Command {
         pgClient.connect(function (err) {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
-                if (err || result.rows.length <= 0) {
+                if (err) {
+                    console.log(err);
+                }
+                else if (result.rows.length <= 0) {
                     console.log(result.rows);
+                    console.log("Creating new entry.");
+                    pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
                     pgClient.end();
-                    pgClient.connect(function (err) {
-                        console.log("Creating new entry.");
-                        pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
-                        pgClient.end();
-                    }
-                    );
-                } else if (result.rows.lenght > 0) {
+                } else if (result.rows) {
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
                     var userDataMoney = JSON.parse(db_result);
