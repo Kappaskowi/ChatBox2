@@ -22,7 +22,8 @@ class MoneyCommand extends commando.Command {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
                 if (err) {
-                    console.log("Error");
+                    console.log(err);
+                    pgClient.end();
                 }
                 else if (result.rows) {
                     console.log(result.rows);
