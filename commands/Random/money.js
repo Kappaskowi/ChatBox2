@@ -18,7 +18,7 @@ class MoneyCommand extends commando.Command {
             if (err) {
                 return console.error('error fetching client from pool', err);
             }
-
+            console.log("Connected");
             //use the client for executing the query
             client.query('SELECT cash AS Bank', ['1'], function (err, result) {
                 //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
