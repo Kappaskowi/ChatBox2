@@ -16,7 +16,7 @@ class MoneyCommand extends commando.Command {
     async run(message, args) {
         var client = new pg.Client(conString);
         client.connect(connectionString);
-        var query = client.query("SELECT public.createBank(" + "'" + message.author.id + "')");
+        var query = client.query("SELECT * FROM bank");
         query.on("row", function (row, result) {
             result.addRow(row);
         });
