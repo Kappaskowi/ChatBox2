@@ -2,7 +2,7 @@ const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
 const pool = require('pg-db');
-
+var connectionString = process.env.DATABASE_URL;
 class MoneyCommand extends commando.Command {
     constructor(client) {
         super(client, {
@@ -14,22 +14,15 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-        pool.connect(function (err, client, done) {
-            if (err) {
-                return console.error('error fetching client from pool', err);
-            }
-            console.log("Connected");
-            //use the client for executing the query
-            client.query('SELECT cash AS Bank', ['1'], function (err, result) {
-                //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
-                done(err);
-
-                if (err) {
-                    return console.error('error running query', err);
-                }
-                console.log(result.rows[0].cash);
-                //output: 1
-            });
+        var client = new pg.Client(conString);
+        client.connect(connectionString);
+        var query = client.query("SELECT public.createBank(" + "'" + message.author.id + "')");
+        query.on("row", function (row, result) {
+            result.addRow(row);
+        });
+        query.on("end", function (result) {
+            console.log(JSON.stringify(result.rows, null, "    "));
+            client.end();
         });
 
     };
