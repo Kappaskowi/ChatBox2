@@ -14,13 +14,15 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-        var client = new pg.Client(conString);
+        var client = new pg.Client(connectionString);
         client.connect(connectionString);
         var query = client.query("SELECT * FROM bank");
         query.on("row", function (row, result) {
             result.addRow(row);
+            console.log("Test1");
         });
         query.on("end", function (result) {
+            console.log("Test2");
             console.log(JSON.stringify(result.rows, null, "    "));
             client.end();
         });
