@@ -14,12 +14,13 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-        pool.query('SELECT $1::int AS number', ['2'], function (err, res) {
+        //pool.query('SELECT $1::int AS number', ['2'], function (err, res) 
+        pool.query('SELECT * FROM bank', ['2'], function (err, res) {
             if (err) {
                 return console.error('error running query', err);
             }
 
-            console.log('number:', res.rows[0].number);
+            console.log('number:', res.rows[0].cash);
         });
 
     };
