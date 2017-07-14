@@ -25,7 +25,7 @@ class MoneyCommand extends commando.Command {
                     console.error(err);
                     pgClient.end();
                 }
-                else if (result.rows) {
+                console.log(result);
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
                     var userDataMoney = JSON.parse(db_result);
