@@ -1,9 +1,7 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
-var helper = require("test.js");
-var connectionString = process.env.DATABASE_URL;
-var pgClient = new pg.Client(connectionString);
+const pool = require('./lib/db');
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
@@ -16,48 +14,48 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-        var db_result = "";
-        var db_query = "SELECT public.createBank(" + "'" + message.author.id + "')";
-        pgClient.connect(function (err) {
-            console.log("Connected!");
-            pgClient.query(db_query, function (err, result) {
-                if (err) {
-                    console.error(err);
-                    pgClient.end();
-                }
-                console.log(result);
-                    console.log(result.rows);
-                    db_result = JSON.stringify(result.rows, null, "    ");
-                    var userDataMoney = JSON.parse(db_result);
-                    message.channel.send({
-                        "embed": {
-                            "description": "**Discord Bank**",
-                            "color": 12367392,
-                            "timestamp": new Date(),
-                            "footer": {
-                                "text": "Discord Bank"
-                            },
-                            "fields": [
-                                {
-                                    "name": "Cash",
-                                    "value": "$ " + userDataMoney[0].cash,
-                                    "inline": true
-                                },
-                                {
-                                    "name": "Bank",
-                                    "value": "$ " + userDataMoney[0].bankamount,
-                                    "inline": true
-                                }
-                            ]
-                        }
-                    }
-                    );
+        var client = new pg.Client();
 
-                }
-            })
-            pgClient.end();
+        // connect to our database
+        client.connect(function (err) {
+            if (err) throw err;
+
+            // execute a query on our database
+            client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
+                if (err) throw err;
+
+                // just print the result to the console
+                console.log(result.rows[0]); // outputs: { name: 'brianc' }
+
+                // disconnect the client
+                client.end(function (err) {
+                    if (err) throw err;
+                });
+            });
         });
-    }
+
+    };
 }
 
 module.exports = MoneyCommand;
+//var db_query = "SELECT public.createBank(" + "'" + message.author.id + "')";
+/*message.channel.send({
+    "embed": {
+        "description": "**Discord Bank**",
+        "color": 12367392,
+        "timestamp": new Date(),
+        "footer": {
+            "text": "Discord Bank"
+        },
+        "fields": [
+            {
+                "name": "Cash",
+                "value": "$ " + userDataMoney[0].cash,
+                "inline": true
+            },
+            {
+                "name": "Bank",
+                "value": "$ " + userDataMoney[0].bankamount,
+                "inline": true
+            }]
+    }*/
