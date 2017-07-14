@@ -25,6 +25,28 @@ class MoneyCommand extends commando.Command {
         query.on("end", function (result) {
             console.log("Test2");
             console.log(JSON.stringify(result.rows, null, "    "));
+            var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
+            message.channel.send({
+                "embed": {
+                    "description": "**Discord Bank**",
+                    "color": 12367392,
+                    "timestamp": new Date(),
+                    "footer": {
+                        "text": "Discord Bank"
+                    },
+                    "fields": [
+                        {
+                            "name": "Cash",
+                            "value": "$ " + userDataMoney[0].cash,
+                            "inline": true
+                        },
+                        {
+                            "name": "Bank",
+                            "value": "$ " + userDataMoney[0].bankamount,
+                            "inline": true
+                        }]
+                }
+            });
             client.end();
         });
 
