@@ -14,24 +14,12 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-        var client = new pg.Client();
+        pool.query('SELECT $1::int AS number', ['2'], function (err, res) {
+            if (err) {
+                return console.error('error running query', err);
+            }
 
-        // connect to our database
-        client.connect(function (err) {
-            if (err) throw err;
-
-            // execute a query on our database
-            client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
-                if (err) throw err;
-
-                // just print the result to the console
-                console.log(result.rows[0]); // outputs: { name: 'brianc' }
-
-                // disconnect the client
-                client.end(function (err) {
-                    if (err) throw err;
-                });
-            });
+            console.log('number:', res.rows[0].number);
         });
 
     };
