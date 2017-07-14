@@ -17,18 +17,14 @@ class MoneyCommand extends commando.Command {
 
     async run(message, args) {
         var db_result = "";
-        var db_query = "SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id;
+        var db_query = "SELECT public.createBank(" + "'" + message.author.id + "')";
         pgClient.connect(function (err) {
             console.log("Connected!");
             pgClient.query(db_query, function (err, result) {
                 if (err) {
-                    console.log(err);
+                    console.log("Error");
                 }
-                else if (result.rows.length <= 0) {
-                    console.log(result.rows);
-                    console.log("Creating new entry.");
-                    pgClient.query("SELECT public.createBank(" + "'" + message.author.id + "')");
-                } else if (result.rows) {
+                else if (result.rows) {
                     console.log(result.rows);
                     db_result = JSON.stringify(result.rows, null, "    ");
                     var userDataMoney = JSON.parse(db_result);
@@ -55,7 +51,7 @@ class MoneyCommand extends commando.Command {
                         }
                     }
                     );
-                    
+
                 }
             })
             pgClient.end();
