@@ -1,7 +1,7 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
-const pool = require('./lib/db');
+const pool = require('CHATBOX2/lib/db');
 
 class MoneyCommand extends commando.Command {
     constructor(client) {
