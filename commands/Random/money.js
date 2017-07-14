@@ -12,7 +12,7 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
-     function test() {
+     var testfunction = () => function test() {
         console.log("Test");
         };
     };
@@ -26,7 +26,7 @@ class MoneyCommand extends commando.Command {
             console.log("Test1");
         });
         query.on("end", function (result) {
-            test();
+            testfunction();
             console.log("Test2");
             console.log(JSON.stringify(result.rows, null, "    "));
             var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
