@@ -3,7 +3,7 @@ const fs = require("fs");
 const pg = require("pg");
 const pool = require('pg-db');
 var connectionString = process.env.DATABASE_URL;
-var client = new pg.Client(connectionString);
+
 class MoneyCommand extends commando.Command {
     constructor(client) {
         super(client, {
@@ -15,7 +15,7 @@ class MoneyCommand extends commando.Command {
     };
 
     async run(message, args) {
-
+        var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT * FROM bank");
         query.on("row", function (row, result) {
