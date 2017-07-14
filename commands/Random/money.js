@@ -25,7 +25,8 @@ class MoneyCommand extends commando.Command {
         query.on("end", function (result) {
             console.log("Test2");
             console.log(JSON.stringify(result.rows, null, "    "));
-            var userDataMoney = JSON.parse(result);
+            var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
+            console.log(userDataMoney);
             message.channel.send({
                 "embed": {
                     "description": "**Discord Bank**",
