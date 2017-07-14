@@ -12,6 +12,9 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
+     function test() {
+        console.log("Test");
+        };
     };
 
     async run(message, args) {
@@ -23,6 +26,7 @@ class MoneyCommand extends commando.Command {
             console.log("Test1");
         });
         query.on("end", function (result) {
+            test();
             console.log("Test2");
             console.log(JSON.stringify(result.rows, null, "    "));
             var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
@@ -49,6 +53,8 @@ class MoneyCommand extends commando.Command {
                             }]
                     }
                 });
+            } else {
+
             }
             client.end();
         });
