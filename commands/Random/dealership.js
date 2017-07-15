@@ -1,5 +1,9 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
+const pg = require("pg");
+const pool = require('pg-db');
+var connectionString = process.env.DATABASE_URL;
+
 class DealershipCommand extends commando.Command {
   constructor(client) {
     super(client, {
@@ -28,18 +32,21 @@ class DealershipCommand extends commando.Command {
   async run(message, args) {
     const text = args.text;
     const content = args.content;
-    if(text === "buy" && content) {
-    console.log(message.author.id + " bought " + content);
+    var client = new pg.Client(connectionString);
+    client.connect();
+    if (text === "buy" && content) {
+      console.log(message.author.id + " bought " + content);
+      client.query('SELECT * FROM public.car', function (err, result) {
+        if (err) {
+          console.error(err);
+        }
+        else
+          console.log(result);
+        console.log("end");
+        client.end();
+      });
     }
-    let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
-    let DataDealership = [];
-    for (var prop in dealership) {
-      DataDealership.push(dealership[prop]);
-    }
-    if (deal_command[0] === "buy") {
-      var obj = [];
-    }
-    else {
+    if (text === "show") {
       for (let i = 0; i < DataDealership.length; i++) {
         message.channel.send({
           embed: {
