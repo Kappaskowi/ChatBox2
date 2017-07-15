@@ -7,14 +7,20 @@ class DealershipCommand extends commando.Command {
       group: 'random',
       memberName: 'dealership',
       description: 'dealership',
+      examples: ['dealership buy carid'],
       args: [
-				{
-					key: 'number',
-					label: 'dealership',
-					prompt: 'What type of vehicle would you like to buy?',
-					type: 'integer'
-				}
-			]
+        {
+          key: 'text',
+          label: 'dealership',
+          prompt: 'What would you like to do?',
+          type: 'integer'
+        },
+        {
+          key: 'content',
+          prompt: 'What type of vehicle would you like to buy?',
+          type: 'integer'
+        }
+      ]
     });
   }
   async run(message, args) {
@@ -29,20 +35,22 @@ class DealershipCommand extends commando.Command {
       var obj = [];
     }
     else {
-                for(let i = 0; i < DataDealership.length; i++) {
-                message.channel.send({embed: {
-                color: 3447003,
-                description: DataDealership[i].model,
-                "thumbnail": {
-                  "url": DataDealership[i].img
-                },
-                "fields": [
-                {
+      for (let i = 0; i < DataDealership.length; i++) {
+        message.channel.send({
+          embed: {
+            color: 3447003,
+            description: DataDealership[i].model,
+            "thumbnail": {
+              "url": DataDealership[i].img
+            },
+            "fields": [
+              {
                 "name": "Price",
                 "value": "$" + DataDealership[i].price
-                }]
-                }})
-                };   
+              }]
+          }
+        })
+      };
     }
   }
 };
