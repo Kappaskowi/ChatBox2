@@ -12,8 +12,6 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
-<<<<<<< HEAD
-
     };
 
     async run(message, args) {
@@ -42,15 +40,9 @@ class MoneyCommand extends commando.Command {
                 }
             });
         };
-
-=======
     };
 
     async run(message, args) {
-                var testfunction = () => function test() {
-            console.log("Test");
-        };
->>>>>>> 89f63617a39cda8fff7baf17ae6a7c35c28d068f
         var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id);
@@ -64,7 +56,6 @@ class MoneyCommand extends commando.Command {
             if (result.rows.length > 0) {
                 InsertEmbed(result.rows);
             }
-
             client.end();
         });
 
