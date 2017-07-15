@@ -12,12 +12,36 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
-     var testfunction = () => function test() {
-        console.log("Test");
-        };
+
     };
 
     async run(message, args) {
+        function InsertEmbed(_rows) {
+            var userDataMoney = JSON.parse(JSON.stringify(_rows, null, "    "));
+            console.log(userDataMoney);
+            message.channel.send({
+                "embed": {
+                    "description": "**Discord Bank**",
+                    "color": 12367392,
+                    "timestamp": new Date(),
+                    "footer": {
+                        "text": "Discord Bank"
+                    },
+                    "fields": [
+                        {
+                            "name": "Cash",
+                            "value": "$ " + userDataMoney[0].cash,
+                            "inline": true
+                        },
+                        {
+                            "name": "Bank",
+                            "value": "$ " + userDataMoney[0].bankamount,
+                            "inline": true
+                        }]
+                }
+            });
+        };
+
         var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id);
@@ -28,40 +52,15 @@ class MoneyCommand extends commando.Command {
         query.on("end", function (result) {
             testfunction();
             console.log("Test2");
-            console.log(JSON.stringify(result.rows, null, "    "));
-            var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
-            console.log(userDataMoney);
             if (result.rows.length > 0) {
-                message.channel.send({
-                    "embed": {
-                        "description": "**Discord Bank**",
-                        "color": 12367392,
-                        "timestamp": new Date(),
-                        "footer": {
-                            "text": "Discord Bank"
-                        },
-                        "fields": [
-                            {
-                                "name": "Cash",
-                                "value": "$ " + userDataMoney[0].cash,
-                                "inline": true
-                            },
-                            {
-                                "name": "Bank",
-                                "value": "$ " + userDataMoney[0].bankamount,
-                                "inline": true
-                            }]
-                    }
-                });
-            } else {
-
+                InsertEmbed(result.rows);
             }
+
             client.end();
         });
 
     };
 }
-
 module.exports = MoneyCommand;
 //var db_query = "SELECT public.createBank(" + "'" + message.author.id + "')";
 /*message.channel.send({
