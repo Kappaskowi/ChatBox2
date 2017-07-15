@@ -6,11 +6,19 @@ class DealershipCommand extends commando.Command {
       name: 'dealership',
       group: 'random',
       memberName: 'dealership',
-      description: 'dealership'
+      description: 'dealership',
+      args: [
+				{
+					key: 'buy',
+					label: 'dealership',
+					prompt: 'What type of vehicle would you like to buy?',
+					type: 'buy'
+				}
+			]
     });
   }
   async run(message, args) {
-    let deal_command = args.split(' ');
+    let deal_command = dealership.buy;
     let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
     let DataDealership = [];
     for (var prop in dealership) {
