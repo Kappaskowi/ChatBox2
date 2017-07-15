@@ -41,29 +41,26 @@ class DealershipCommand extends commando.Command {
       var query = client.query('SELECT * FROM public.car');
       query.on("row", function (row, result) {
         result.addRow(row);
-        console.log(row);
+        message.channel.send({
+          embed: {
+            color: 3447003,
+            description: row.model,
+            "thumbnail": {
+              "url": "test"
+            },
+            "fields": [
+              {
+                "name": "Price",
+                "value": "$"
+              }]
+          }
+        });
       });
       query.on("end", function (result) {
         console.log("Test2");
         if (result.rows.length > 0) {
           console.log(result.rows);
           client.end();
-          for (let i = 0; i < DataDealership.length; i++) {
-            message.channel.send({
-              embed: {
-                color: 3447003,
-                description: DataDealership[i].model,
-                "thumbnail": {
-                  "url": DataDealership[i].img
-                },
-                "fields": [
-                  {
-                    "name": "Price",
-                    "value": "$" + DataDealership[i].price
-                  }]
-              }
-            })
-          };
         }
       });
     };
