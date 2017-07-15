@@ -36,7 +36,7 @@ class DealershipCommand extends commando.Command {
     client.connect();
     if (text === "buy" && content) {
       console.log(message.author.id + " bought " + content);
-      client.query('SELECT * FROM public.car');
+      var query = client.query('SELECT * FROM public.car');
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log("Test1");
