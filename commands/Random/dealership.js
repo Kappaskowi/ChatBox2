@@ -25,7 +25,7 @@ class DealershipCommand extends commando.Command {
     });
   }
   async run(message, args) {
-    const text = args.dealership;
+    const text = args.text;
     console.log(text);
     let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
     let DataDealership = [];
