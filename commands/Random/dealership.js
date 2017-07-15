@@ -35,7 +35,12 @@ class DealershipCommand extends commando.Command {
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
-      console.log(message.author.id + " bought " + content);
+      var query = client.query('SELECT public.addGarage ($1,$2)', [message.author.id, content]);
+      query.on("row", function (row, result) {
+        result.addRow(row);
+        console.log(row);
+        console.log(message.author.id + " bought " + content)
+      });
     };
     if (text === "show") {
       var query = client.query('SELECT * FROM public.car');
@@ -54,12 +59,12 @@ class DealershipCommand extends commando.Command {
                 "value": "$",
                 "inline": true
               },
-               {
+              {
                 "name": "ID",
                 "value": row.carid,
-                 "inline": true
+                "inline": true
               }
-              ]
+            ]
           }
         });
       });
