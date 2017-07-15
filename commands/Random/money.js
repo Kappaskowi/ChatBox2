@@ -51,7 +51,6 @@ class MoneyCommand extends commando.Command {
             console.log("Test1");
         });
         query.on("end", function (result) {
-            console.log(testfunction());
             console.log("Test2");
             if (result.rows.length > 0) {
                 InsertEmbed(result.rows);
