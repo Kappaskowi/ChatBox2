@@ -36,33 +36,36 @@ class DealershipCommand extends commando.Command {
     client.connect();
     if (text === "buy" && content) {
       console.log(message.author.id + " bought " + content);
-      client.query('SELECT * FROM public.car', function (err, result) {
-        if (err) {
-          console.error(err);
-        }
-        else
-          console.log(result);
-        console.log("end");
-        client.end();
+      client.query("SELECT * FROM public.car");
+      query.on("row", function (row, result) {
+        result.addRow(row);
+        console.log("Test1");
       });
-    }
-    if (text === "show") {
-      for (let i = 0; i < DataDealership.length; i++) {
-        message.channel.send({
-          embed: {
-            color: 3447003,
-            description: DataDealership[i].model,
-            "thumbnail": {
-              "url": DataDealership[i].img
-            },
-            "fields": [
-              {
-                "name": "Price",
-                "value": "$" + DataDealership[i].price
-              }]
-          }
-        })
-      };
+      query.on("end", function (result) {
+        console.log("Test2");
+        if (result.rows.length > 0) {
+          console.log(result.rows);
+          client.end();
+        }
+      });
+      if (text === "show") {
+        for (let i = 0; i < DataDealership.length; i++) {
+          message.channel.send({
+            embed: {
+              color: 3447003,
+              description: DataDealership[i].model,
+              "thumbnail": {
+                "url": DataDealership[i].img
+              },
+              "fields": [
+                {
+                  "name": "Price",
+                  "value": "$" + DataDealership[i].price
+                }]
+            }
+          })
+        };
+      }
     }
   }
 };
