@@ -13,7 +13,7 @@ class DealershipCommand extends commando.Command {
           key: 'text',
           label: 'dealership',
           prompt: 'What would you like to do?',
-          type: 'integer'
+          type: 'string'
         },
         {
           key: 'content',
