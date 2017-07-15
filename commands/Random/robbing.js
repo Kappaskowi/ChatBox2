@@ -16,12 +16,15 @@ class RobbingCommand extends commando.Command {
         var robbedAmmount = Math.floor(Math.random() * 1000) + 1;
         var client = new pg.Client(connectionString);
         client.connect();
-        var query = "UPDATE public.bank SET cash = cash + " + robbedAmmount + " WHERE userid = " + message.author.id;
-        client.query(query);
-         query.on("end", function (result) {
-            console.log("Test2");
+        console.log("Connected to Mysql");
+
+        var db_query = "UPDATE public.bank SET cash = cash + ? WHERE userid = ?";
+
+        var query = connection.query(db_query, [robbedAmmount, message.author.id], function (err, result) {
+            console.log("Record Updated!!");
             message.reply("You robbed $" + robbedAmmount);
-         });
+            console.log(result);
+        });
         client.end();
     }
 }
