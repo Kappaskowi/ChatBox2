@@ -40,6 +40,7 @@ class DealershipCommand extends commando.Command {
         result.addRow(row);
         console.log(row);
         message.channel.send(message.author + " just bought a " + row.addgarage);
+        client.end();
       });
     };
     if (text === "show") {
