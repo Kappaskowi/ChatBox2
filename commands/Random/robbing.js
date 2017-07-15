@@ -1,5 +1,8 @@
 const commando = require('discord.js-commando');
 const fs = require("fs");
+const pool = require('pg-db');
+var connectionString = process.env.DATABASE_URL;
+
 class RobbingCommand extends commando.Command {
     constructor(client) {
         super(client, {
@@ -11,17 +14,11 @@ class RobbingCommand extends commando.Command {
     }
     async run(message, args) {
         var robbedAmmount = Math.floor(Math.random() * 1000) + 1;
+        var client = new pg.Client(connectionString);
+        client.connect();
+        var query = client.query("UPDATE public.bank SET cash = cash + " + robbedAmmount + " WHERE userid = " + message.author.id);
         message.reply("You robbed $" + robbedAmmount);
-        let money = JSON.parse(fs.readFileSync("./json/money.json", "utf8"));
-        if (!money[message.author.id]) money[message.author.id] = {
-            money: 0
-        };
-        let userDataMoney= money[message.author.id];
-        userDataMoney.money = userDataMoney.money + robbedAmmount;
-        message.reply("Your balance is $" + userDataMoney.money);
-        fs.writeFile("./json/money.json", JSON.stringify(money), (err) => {
-            if (err) console.error(err)
-        });
+        client.end();
     }
 }
 

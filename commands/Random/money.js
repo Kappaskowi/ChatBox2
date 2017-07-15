@@ -57,6 +57,7 @@ class MoneyCommand extends commando.Command {
             }
             else {
                  query = client.query("INSERT INTO public.bank(userid, cash, bankamount) VALUES ('" + message.author.id + "',0,0)");
+                 client.end();
             }
 
             
