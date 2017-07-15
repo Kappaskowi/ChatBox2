@@ -16,13 +16,12 @@ class RobbingCommand extends commando.Command {
     async run(message, args) {
         var robbedAmmount = Math.floor(Math.random() * 1000) + 1;
         var client = new pg.Client(connectionString);
-        client.connect();
-        console.log("Connected to Mysql");
-        var query = client.query("UPDATE public.bank SET cash = 100 WHERE userid = 304369797930418181");
-        query.on("end", function (result) {
+        client.connect(function(err, client, done) {
+         console.log("Connected to Mysql");
+        client.query("UPDATE public.bank SET cash = 100 WHERE userid = 304369797930418181")
             console.log("Test2");
-            message.reply("You robbed $" + robbedAmmount);
-        });
+        done()
+        })
         client.end();
     }
 }
