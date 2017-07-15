@@ -24,7 +24,7 @@ class DealershipCommand extends commando.Command {
           key: 'content',
           prompt: 'What type of vehicle would you like to buy?',
           type: 'integer',
-          default: ''
+          //default: ''
         }
       ]
     });
@@ -51,11 +51,13 @@ class DealershipCommand extends commando.Command {
             "fields": [
               {
                 "name": "Price",
-                "value": "$"
+                "value": "$",
+                "inline": true
               },
                {
                 "name": "ID",
-                "value": row.carid
+                "value": row.carid,
+                 "inline": true
               }
               ]
           }
