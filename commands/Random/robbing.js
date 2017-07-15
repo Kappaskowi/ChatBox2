@@ -19,7 +19,7 @@ class RobbingCommand extends commando.Command {
         var client = new pg.Client(connectionString);
         client.connect();
         console.log("Connected to Mysql");
-        var db_query = "UPDATE public.bank SET cash = ? WHERE userid = ?";
+        var db_query = "UPDATE public.bank SET cash = ? WHERE userid = 304369797930418181";
         var query = connection.query(db_query, [robbedAmmount, message.author.id], function (err, result) {
             console.log("Record Updated!!");
             //message.reply("You robbed $" + robbedAmmount);
