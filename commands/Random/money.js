@@ -12,12 +12,12 @@ class MoneyCommand extends commando.Command {
             memberName: 'money',
             description: 'Balance'
         });
-     var testfunction = () => function test() {
-        console.log("Test");
-        };
     };
 
     async run(message, args) {
+                var testfunction = () => function test() {
+            console.log("Test");
+        };
         var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + message.author.id);
