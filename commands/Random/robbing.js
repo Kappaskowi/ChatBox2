@@ -10,7 +10,11 @@ class RobbingCommand extends commando.Command {
             name: 'rob',
             group: 'random',
             memberName: 'rob',
-            description: 'Hit a lick'
+            description: 'Hit a lick',
+            throttling: {
+                usages: 1,
+                duration: 10
+            }
         });
     }
     async run(message, args) {
@@ -18,17 +22,17 @@ class RobbingCommand extends commando.Command {
         var client = new pg.Client(connectionString);
         client.connect();
         console.log("Connected to Mysql");
-       client.query('UPDATE public.bank SET cash = cash + $2 WHERE userid = $1',[message.author.id, robbedAmmount], function(err,result) {
-         if (err) {
-            console.error(err);
-            } 
-           else
-            console.log(result);
+        client.query('UPDATE public.bank SET cash = cash + $2 WHERE userid = $1', [message.author.id, robbedAmmount], function (err, result) {
+            if (err) {
+                console.error(err);
+            }
+            else
+                console.log(result);
             message.reply("You robbed $" + robbedAmmount);
-           console.log("end");
-        client.end();
-       });
-     
+            console.log("end");
+            client.end();
+        });
+
     }
 }
 

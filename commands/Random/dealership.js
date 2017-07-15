@@ -9,17 +9,17 @@ class DealershipCommand extends commando.Command {
       description: 'dealership',
       args: [
 				{
-					key: 'buy',
+					key: 'number',
 					label: 'dealership',
 					prompt: 'What type of vehicle would you like to buy?',
-					type: 'buy'
+					type: 'integer'
 				}
 			]
     });
   }
   async run(message, args) {
-    const dealer= buy.dealership;
-    const buy = args.buy;
+    //const dealer= buy.dealership;
+    //const buy = args.number;
     let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
     let DataDealership = [];
     for (var prop in dealership) {
@@ -27,11 +27,6 @@ class DealershipCommand extends commando.Command {
     }
     if (deal_command[0] === "buy") {
       var obj = [];
-      obj.push(message.author.id);
-      obj.push(DataDealership[deal_command[1]]);
-      fs.writeFile("./json/garage.json", JSON.stringify(obj), (err) => {
-        if (err) console.error(err)
-      });
     }
     else {
                 for(let i = 0; i < DataDealership.length; i++) {
