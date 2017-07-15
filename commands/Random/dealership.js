@@ -19,14 +19,18 @@ class DealershipCommand extends commando.Command {
         {
           key: 'content',
           prompt: 'What type of vehicle would you like to buy?',
-          type: 'integer'
+          type: 'integer',
+          default: ''
         }
       ]
     });
   }
   async run(message, args) {
     const text = args.text;
-    console.log(text);
+    const content = args.content;
+    if(text === "buy" && content) {
+    console.log(message.author.id + " bought " + content);
+    }
     let dealership = JSON.parse(fs.readFileSync("./json/dealership.json", "utf8"));
     let DataDealership = [];
     for (var prop in dealership) {
