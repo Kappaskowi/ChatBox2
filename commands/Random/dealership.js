@@ -52,7 +52,12 @@ class DealershipCommand extends commando.Command {
               {
                 "name": "Price",
                 "value": "$"
-              }]
+              },
+               {
+                "name": "ID",
+                "value": row.carid
+              }
+              ]
           }
         });
       });
