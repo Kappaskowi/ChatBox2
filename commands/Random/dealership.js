@@ -46,7 +46,7 @@ class DealershipCommand extends commando.Command {
             color: 3447003,
             description: row.model,
             "thumbnail": {
-              "url": "test"
+              "url": row.img
             },
             "fields": [
               {
