@@ -24,7 +24,7 @@ class DealershipCommand extends commando.Command {
           key: 'content',
           prompt: 'What type of vehicle would you like to buy?',
           type: 'integer',
-          //default: ''
+          default: ''
         }
       ]
     });
