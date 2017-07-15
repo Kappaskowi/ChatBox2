@@ -20,7 +20,7 @@ class RobbingCommand extends commando.Command {
         client.connect();
         console.log("Connected to Mysql");
         var db_query = "UPDATE public.bank SET cash = cash + 100 WHERE userid = 304369797930418181";
-        var query = connection.query(db_query, function (err, result) {
+        client.query('UPDATE public.bank SET cash = $2 WHERE userid = $1', [message.author.id, 100], function (err, result) {
             console.log("Record Updated!!");
             //message.reply("You robbed $" + robbedAmmount);
             console.log(result);
