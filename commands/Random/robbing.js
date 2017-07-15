@@ -24,7 +24,7 @@ class RobbingCommand extends commando.Command {
             } 
             console.log("Test2");
             message.reply("You robbed $" + robbedAmmount);
-       };
+       });
         client.end();
     }
 }
