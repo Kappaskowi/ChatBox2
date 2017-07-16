@@ -42,6 +42,12 @@ class DealershipCommand extends commando.Command {
       });
       query.on('error', function (err) {
         console.log('Query error: ' + err);
+        if(err === 'insert or update on table "garage" violates foreign key constraint "carid"') {
+          message.reply("The vehicle you're trying to buy does not exist.");
+        }
+        if(err === 'duplicate key value violates unique constraint "garage_pkey"') {
+          message.reply("You're garage is full.");
+        }
         client.end();
       });
       query.on("end", function (result) {
