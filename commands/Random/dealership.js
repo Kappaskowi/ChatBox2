@@ -43,8 +43,8 @@ class DealershipCommand extends commando.Command {
       query.on("end", function (result) {
         console.log("Test2");
         if (result.rows.length > 0) {
-          console.log(result.rows.addgarage);
-          //message.channel.send(message.author + " just bought a " + row.addgarage);
+          var userDataGarage = JSON.parse(JSON.stringify(result.rows, null, "    "));
+          message.channel.send(message.author + " just bought a " + userDataGarage[0].addgarage);
           client.end();
         }
       });
