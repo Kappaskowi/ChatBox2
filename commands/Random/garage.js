@@ -14,8 +14,8 @@ class GarageCommand extends commando.Command {
     }
     async run(message, args) {
         function InsertEmbed(_rows) {
-            var userDataGarage = _rows.split(",");
-            console.log(userDataGarage[0] + " " + userDataGarage[1]);
+            var userDataGarage = _rows;
+            console.log(userDataGarage);
             message.channel.send({
                 "embed": {
                     "description": message.author + " **Garage**",
@@ -38,7 +38,6 @@ class GarageCommand extends commando.Command {
         var query = client.query('SELECT public.getgarage($1)',[message.author.id]);
         query.on("row", function (row, result) {
             result.addRow(row);
-            console.log("Test1");
         });
         query.on("end", function (result) {
             console.log("Test2");
