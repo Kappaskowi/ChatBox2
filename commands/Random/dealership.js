@@ -39,8 +39,14 @@ class DealershipCommand extends commando.Command {
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log(row);
-        message.channel.send(message.author + " just bought a " + row.addgarage);
-        client.end();
+      });
+      query.on("end", function (result) {
+        console.log("Test2");
+        if (result.rows.length > 0) {
+          console.log(result.rows);
+          //message.channel.send(message.author + " just bought a " + row.addgarage);
+          client.end();
+        }
       });
     };
     if (text === "show") {
