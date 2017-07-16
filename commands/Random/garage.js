@@ -30,6 +30,8 @@ class GarageCommand extends commando.Command {
                 }
             });
         };
+        var client = new pg.Client(connectionString);
+        client.connect();
         var query = client.query('SELECT public.getgarage($1)'[message.author.id]);
         query.on("row", function (row, result) {
             result.addRow(row);
