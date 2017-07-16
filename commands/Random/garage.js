@@ -27,7 +27,7 @@ class GarageCommand extends commando.Command {
                     "fields": [
                         {
                             "name": "Model",
-                            "value": userDataGarage[0],
+                            "value": userDataGarage[0].model,
                             "inline": true
                         }]
                 }
