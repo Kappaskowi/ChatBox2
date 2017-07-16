@@ -31,7 +31,7 @@ class CreateCommand extends commando.Command {
         return msg.member.hasPermission('BAN_MEMBERS');
     }
 
-    run(msg, args) {
+    async run(message, args) {
         const url = args.url;
         const model = args.model;
          var client = new pg.Client(connectionString);
