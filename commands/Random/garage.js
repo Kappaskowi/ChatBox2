@@ -30,7 +30,7 @@ class GarageCommand extends commando.Command {
                 }
             });
         };
-        var query = client.query('SELECT public.getgarage($1)'[message.author.id]);
+        var query = client.query('SELECT public.getgarage($1)',[message.author.id]);
         query.on("row", function (row, result) {
             result.addRow(row);
             console.log("Test1");
