@@ -40,6 +40,10 @@ class DealershipCommand extends commando.Command {
         result.addRow(row);
         console.log(row);
       });
+      query.on('error', function (err) {
+        console.log('Query error: ' + err);
+        client.end();
+      });
       query.on("end", function (result) {
         console.log("Test2");
         if (result.rows.length > 0) {
