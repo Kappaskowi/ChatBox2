@@ -46,7 +46,7 @@ class DealershipCommand extends commando.Command {
           message.reply("The vehicle you're trying to buy does not exist.");
         }
         if(err.code == 23505) {
-          message.reply("You're garage is full.");
+          message.reply("Your garage is full.");
         }
         client.end();
       });
