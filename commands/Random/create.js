@@ -5,7 +5,7 @@ class CreateCommand extends  commando.Command  {
         super(client, {
             name: 'say',
             aliases: ['copycat', 'repeat', 'echo', 'parrot'],
-            group: 'group2',
+            group: 'random',
             memberName: 'say',
             description: 'Replies with the text you provide.',
             examples: ['say Hi there!'],
