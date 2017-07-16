@@ -21,7 +21,7 @@ class GarageCommand extends commando.Command {
                     "description": message.author + " **Garage**",
                     "color": 12367392,
                     "thumbnail": {
-              "url": row.img
+              "url":  userDataGarage[0].img
             },
                     "timestamp": new Date(),
                     "footer": {
