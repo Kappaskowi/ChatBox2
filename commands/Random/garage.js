@@ -20,6 +20,9 @@ class GarageCommand extends commando.Command {
                 "embed": {
                     "description": message.author + " **Garage**",
                     "color": 12367392,
+                    "thumbnail": {
+              "url": row.img
+            },
                     "timestamp": new Date(),
                     "footer": {
                         "text": "Garage"
