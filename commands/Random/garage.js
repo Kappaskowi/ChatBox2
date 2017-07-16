@@ -14,7 +14,7 @@ class GarageCommand extends commando.Command {
     }
     async run(message, args) {
         function InsertEmbed(_rows) {
-            var userDataGarage = _rows.getgarage.split(",");
+            var userDataGarage = _rows.split(",");
             console.log(userDataGarage[0] + " " + userDataGarage[1]);
             message.channel.send({
                 "embed": {
