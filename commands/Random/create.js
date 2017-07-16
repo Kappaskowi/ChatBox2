@@ -21,7 +21,7 @@ class CreateCommand extends  commando.Command  {
     }
 
     hasPermission(msg) {
-        return this.client.isOwner(msg.author);
+        return msg.member.hasPermission('BAN_MEMBERS');
     }
 
     run(msg, args) {
