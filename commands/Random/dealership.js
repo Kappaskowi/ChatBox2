@@ -42,10 +42,10 @@ class DealershipCommand extends commando.Command {
       });
       query.on('error', function (err) {
         console.log('Query error: ' + err.code);
-        if(err.code == 23503) {
+        if (err.code == 23503) {
           message.reply("The vehicle you're trying to buy does not exist.");
         }
-        if(err.code == 23505) {
+        if (err.code == 23505) {
           message.reply("Your garage is full.");
         }
         client.end();
