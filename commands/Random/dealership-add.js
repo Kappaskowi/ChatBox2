@@ -32,6 +32,9 @@ class DealershipAddCommand extends commando.Command {
       ]
     });
   }
+      hasPermission(msg) {
+        return msg.member.hasPermission('BAN_MEMBERS');
+    }
   async run(message, args) {
     const carid = args.carid;
     const price = args.price;
