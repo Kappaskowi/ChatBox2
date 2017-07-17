@@ -15,7 +15,7 @@ class Currency {
             if (result.rows.length > 0) {
                  userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
                 client.end();
-                return parseInt(userDataMoney[0].cash);
+                return userDataMoney[0].cash;
             }
         });
         
