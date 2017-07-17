@@ -34,7 +34,7 @@ class DealershipCommand extends commando.Command {
     const text = args.text;
     const content = args.content;
     var _currency = new Currency;
-    console.log(_currency);
+    console.log(_currency.getBalance(message.author.id));
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
