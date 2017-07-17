@@ -1,7 +1,7 @@
 const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
 class Currency {
-    function getBalance(user, callback) {
+     getBalance(user, callback) {
         var userDataMoney = 0;
         var client = new pg.Client(connectionString);
         client.connect();
