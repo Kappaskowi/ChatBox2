@@ -26,7 +26,7 @@ class DealershipAddCommand extends commando.Command {
         {
           key: 'amount',
           prompt: 'How many of that type would you like to add?',
-          type: 'integer',
+          type: 'integer'
           //default: 1
         }
       ]
