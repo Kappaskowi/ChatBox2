@@ -60,7 +60,7 @@ class DealershipCommand extends commando.Command {
       });
     };
     if (text === "show") {
-      var query = client.query('SELECT * FROM public.car');
+      var query = client.query('SELECT * FROM public.dealershipView');
       query.on("row", function (row, result) {
         result.addRow(row);
         message.channel.send({
@@ -73,12 +73,17 @@ class DealershipCommand extends commando.Command {
             "fields": [
               {
                 "name": "Price",
-                "value": "$",
+                "value": "$" + row.price,
                 "inline": true
               },
               {
                 "name": "ID",
                 "value": row.carid,
+                "inline": true
+              },
+              {
+                "name": "Available",
+                "value": row.amount,
                 "inline": true
               }
             ]
