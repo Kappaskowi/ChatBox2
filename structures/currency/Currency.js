@@ -1,8 +1,7 @@
 const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
-class Currency {
-     getBalance(user) {
-        var userDataMoney = 0;
+function getBalance(user) {
+        var userDataMoney = '';
         var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + user);
@@ -13,11 +12,8 @@ class Currency {
             if (result.rows.length > 0) {
                 userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
                 client.end();
-                return userDataMoney[0].cash;
+                return userDataMoney;
             }
         });
-        
-    }
-
 }
 module.exports = Currency;
