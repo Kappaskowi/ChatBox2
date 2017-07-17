@@ -11,7 +11,7 @@ class Currency {
         });
         query.on("end", function (result) {
             if (result.rows.length > 0) {
-                 userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
+                userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
                 client.end();
                 return userDataMoney[0].cash;
             }
