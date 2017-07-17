@@ -1,7 +1,7 @@
 const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
 module.exports = {
-        balance : "userDataMoney",
+        balance : getBalance(message.author.id),
         getBalance: function (user) {
             var client = new pg.Client(connectionString);
             client.connect();
