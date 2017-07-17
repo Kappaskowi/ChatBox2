@@ -2,6 +2,7 @@ const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
 class Currency {
     static async getBalance(user) {
+        var userDataMoney = 0;
         var client = new pg.Client(connectionString);
         client.connect();
         var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + user);
@@ -12,7 +13,7 @@ class Currency {
         query.on("end", function (result) {
             console.log("Test2");
             if (result.rows.length > 0) {
-                 var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
+                 userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
                 console.log(userDataMoney);
                 client.end();
             }
