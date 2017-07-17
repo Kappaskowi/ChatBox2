@@ -14,11 +14,11 @@ class Currency {
             console.log("Test2");
             if (result.rows.length > 0) {
                  userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
-                console.log(userDataMoney);
                 client.end();
+                return parseInt(userDataMoney[0].cash);
             }
         });
-        return parseInt(userDataMoney[0].cash);
+        
     }
 
 }
