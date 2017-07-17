@@ -38,7 +38,7 @@ class DealershipAddCommand extends commando.Command {
     const amount = args.amount;
     var client = new pg.Client(connectionString);
     client.connect();
-    if (text === "add" && content) {
+    if (carid && price && amount) {
       var query = client.query('SELECT public.adddealership ($1,$2,$3)', [carid, price, amount]);
       query.on("row", function (row, result) {
         result.addRow(row);
