@@ -33,7 +33,9 @@ class DealershipCommand extends commando.Command {
   async run(message, args) {
     const text = args.text;
     const content = args.content;
-    const money = new Currency.getBalance(message.author.id);
+    var money = new Currency;
+    money = money.getBalance(message.author.id);
+    console.log(money);
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
@@ -41,8 +43,6 @@ class DealershipCommand extends commando.Command {
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log(row);
-        
-        console.log(money);
       });
       query.on('error', function (err) {
         console.log('Query error: ' + err.code);
