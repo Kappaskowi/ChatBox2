@@ -33,8 +33,8 @@ class DealershipCommand extends commando.Command {
   async run(message, args) {
     const text = args.text;
     const content = args.content;
-    const Currency = require('../../structures/currency/Currency').getBalance(message.author.id);
-    console.log(money);
+    var _currency = new Currency;
+    console.log(_currency);
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
