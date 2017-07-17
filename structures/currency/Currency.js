@@ -14,7 +14,7 @@ class Currency {
                  userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
                 client.end();
                 console.log(userDataMoney[0].cash);
-                return serDataMoney[0].cash;
+                return userDataMoney[0].cash;
             }
         });
         
