@@ -2,6 +2,7 @@ const commando = require('discord.js-commando');
 const fs = require("fs");
 const pg = require("pg");
 const pool = require('pg-db');
+const Currency = require('../../structures/currency/Currency');
 var connectionString = process.env.DATABASE_URL;
 
 class DealershipCommand extends commando.Command {
@@ -39,6 +40,7 @@ class DealershipCommand extends commando.Command {
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log(row);
+        console.log(Currency.getBalance(message.author.id));
       });
       query.on('error', function (err) {
         console.log('Query error: ' + err.code);
