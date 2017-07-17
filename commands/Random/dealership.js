@@ -40,7 +40,7 @@ class DealershipCommand extends commando.Command {
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log(row);
-        console.log(Currency.getBalance(message.author.id));
+        console.log(await Currency.getBalance(message.author.id));
       });
       query.on('error', function (err) {
         console.log('Query error: ' + err.code);
