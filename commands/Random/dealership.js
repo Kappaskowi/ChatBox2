@@ -60,7 +60,7 @@ class DealershipCommand extends commando.Command {
       });
     };
     if (text === "show") {
-      var query = client.query('SELECT * FROM public.dealershipView');
+      var query = client.query('SELECT * FROM public."dealershipView"');
       query.on("row", function (row, result) {
         result.addRow(row);
         message.channel.send({
