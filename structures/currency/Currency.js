@@ -13,6 +13,7 @@ class Currency {
             console.log("Test2");
             if (result.rows.length > 0) {
                  var userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
+                console.log(userDataMoney);
                 client.end();
             }
         });
