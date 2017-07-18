@@ -38,7 +38,7 @@ class DealershipCommand extends commando.Command {
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
-      var query = client.query('SELECT public.addGarage ($1,$2)', [message.author.id, content]);
+      var query = client.query('SELECT public.buyvehicle ($1,$2)', [message.author.id, content]);
       query.on("row", function (row, result) {
         result.addRow(row);
         console.log(row);
@@ -54,10 +54,12 @@ class DealershipCommand extends commando.Command {
         client.end();
       });
       query.on("end", function (result) {
-        console.log("Test2");
         if (result.rows.length > 0) {
           var userDataGarage = JSON.parse(JSON.stringify(result.rows, null, "    "));
+          if(userDataGarage[0].addgarage) {
           message.channel.send(message.author + " just bought a " + userDataGarage[0].addgarage);
+          }
+          else message.channel.send("Error");
           client.end();
         }
       });
