@@ -10,6 +10,7 @@ var level = function (num) {
         test = row;
     });
     client.end();
+    console.log("DB return : ",test);
     return test;
 };
 module.exports = level;
