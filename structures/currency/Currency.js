@@ -7,7 +7,7 @@ var level = function (num) {
     var query = client.query('SELECT * from public.bank WHERE userid = 304369797930418181')
     query.on("row", function (row, result) {
         result.addRow(row);
-        test = row;
+        test = result;
     });
     client.end();
     console.log("DB return : " + test);
