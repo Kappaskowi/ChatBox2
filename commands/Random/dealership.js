@@ -33,8 +33,6 @@ class DealershipCommand extends commando.Command {
   async run(message, args) {
     const text = args.text;
     const content = args.content;
-    var _currency = require('../../structures/currency/Currency')(304369797930418181);
-    console.log("Returning value balance: ",_currency);
     var client = new pg.Client(connectionString);
     client.connect();
     if (text === "buy" && content) {
@@ -56,8 +54,8 @@ class DealershipCommand extends commando.Command {
       query.on("end", function (result) {
         if (result.rows.length > 0) {
           var userDataGarage = JSON.parse(JSON.stringify(result.rows, null, "    "));
-          if(userDataGarage[0].addgarage) {
-          message.channel.send(message.author + " just bought a " + userDataGarage[0].addgarage);
+          if(userDataGarage[0].buyvehicle) {
+          message.channel.send(message.author + " just bought a " + userDataGarage[0].buyvehicle);
           }
           else message.channel.send("Error");
           client.end();
