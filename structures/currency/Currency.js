@@ -10,6 +10,6 @@ var level = function (num) {
         test = row;
     });
     client.end();
-    return row;
+    return test;
 };
 module.exports = level;
