@@ -11,12 +11,12 @@ var level = function (num) {
     query.on("end", function (result) {
         console.log("Test2");
         if (result.rows.length > 0) {
-            test = JSON.parse(JSON.stringify(result.rows, null, "    "));
-            console.log("DB return 1 : " + test);
+            num = JSON.parse(JSON.stringify(result.rows, null, "    "));
+            console.log("DB return 1 : " + num);
             client.end();
         }
     });
-    console.log("DB return 2 : " + test);
-    return test;
+    console.log("DB return 2 : " + num);
+    return num;
 };
 module.exports = level;
