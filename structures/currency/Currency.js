@@ -1,12 +1,13 @@
 const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
 var level = function (num) {
+    var test = {};
     var client = new pg.Client(connectionString);
     client.connect();
     var query = client.query('SELECT * from public.bank WHERE userid = 304369797930418181')
     query.on("row", function (row, result) {
         result.addRow(row);
-        var test = JSON.parse(JSON.stringify(result.rows, null, "    "));
+        test = JSON.parse(JSON.stringify(result.rows, null, "    "));
         console.log("DB return 2 : " + test);
     });
     client.end();
