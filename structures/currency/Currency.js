@@ -1,22 +1,6 @@
 const pg = require("pg");
 var connectionString = process.env.DATABASE_URL;
-var _balance = '';
-module.exports = {
-        balance : _balance,
-        getBalance: function (user) {
-            var client = new pg.Client(connectionString);
-            client.connect();
-            var query = client.query("SELECT cash, bankamount FROM public.bank WHERE userid = " + user);
-            query.on("row", function (row, result) {
-                result.addRow(row);
-            });
-            query.on("end", function (result) {
-                if (result.rows.length > 0) {
-                    userDataMoney = JSON.parse(JSON.stringify(result.rows, null, "    "));
-                    client.end();
-                }
-                console.log(userDataMoney);
-                _balance = userDataMoney;
-            });
-        }
+var level = function(num) {
+	return num > 40 ? "It's over 40!" : num;
 };
+module.exports = level;
