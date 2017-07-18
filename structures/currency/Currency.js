@@ -7,10 +7,15 @@ var level = function (num) {
     var query = client.query('SELECT * from public.bank WHERE userid = 304369797930418181')
     query.on("row", function (row, result) {
         result.addRow(row);
-        test = JSON.parse(JSON.stringify(result.rows, null, "    "));
-        console.log("DB return 2 : " + test);
     });
-    client.end();
+    query.on("end", function (result) {
+        console.log("Test2");
+        if (result.rows.length > 0) {
+            test = JSON.parse(JSON.stringify(result.rows, null, "    "));
+            console.log("DB return 1 : " + test);
+            client.end();
+        }
+    });
     console.log("DB return 2 : " + test);
     return test;
 };
