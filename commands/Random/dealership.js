@@ -49,6 +49,9 @@ class DealershipCommand extends commando.Command {
         if (err.code == 23505) {
           message.reply("Your garage is full.");
         }
+        if(err.code == 23514) {
+          message.reply("That vehicle is out of stock.");
+        }
         client.end();
       });
       query.on("end", function (result) {
@@ -56,7 +59,7 @@ class DealershipCommand extends commando.Command {
           var userDataGarage = JSON.parse(JSON.stringify(result.rows, null, "    "));
           console.log(userDataGarage);
           if(userDataGarage[0].buyvehicle === null) {
-          message.channel.send("Error"); 
+          message.channel.send("You don't have enough cash to buy that vehicle."); 
           }
           else message.channel.send(message.author + " just bought a " + userDataGarage[0].buyvehicle);
           client.end();
