@@ -55,7 +55,7 @@ class DealershipCommand extends commando.Command {
         if (result.rows.length > 0) {
           var userDataGarage = JSON.parse(JSON.stringify(result.rows, null, "    "));
           console.log(userDataGarage);
-          if(userDataGarage[0].buyvehicle === "null") {
+          if(userDataGarage[0].buyvehicle === null) {
           message.channel.send("Error"); 
           }
           else message.channel.send(message.author + " just bought a " + userDataGarage[0].buyvehicle);
